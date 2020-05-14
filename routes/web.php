@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('admin.templates.default');
 });
+
+Route::get('/user', function () {
+    return view('admin.user.index');
+});
