@@ -1,5 +1,4 @@
 <?php
 
-Route::get('/', function () {
-    return 'admin page';
-})->name('dashboard');
+Route::get('/', 'HomeController@index')->name('dashboard'); // untuk menghilangkan Admin\\ pada Admin\\HomeController maka harus menambahkan "\Admin" pada mapAdminRoute function di traffic namespace di RouteServiceProvider
+
