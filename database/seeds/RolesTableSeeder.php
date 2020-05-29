@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class RolesTableSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class RolesTableSeeder extends Seeder
         ]);
 
         Role::create([
-            'name' => 'admin'
+            'name' => 'user'
         ]);
     }
 }
