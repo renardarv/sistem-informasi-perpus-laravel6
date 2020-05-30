@@ -43,6 +43,6 @@
 </div>
 <!-- ./wrapper -->
 
-@include('admin.templates.partials.script')
+@include('admin.templates.partials.scripts')
 </body>
 </html>
