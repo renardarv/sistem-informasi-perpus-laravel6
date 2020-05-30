@@ -77,7 +77,8 @@ class AuthorController extends Controller
     {
         $author->update($request->only('name'));
 
-        return redirect()->route('admin.author.index');
+        return redirect()->route('admin.author.index')
+                    ->with('success', 'Data penulis berhasil ditambahkan!');
     }
 
     /**
@@ -88,9 +89,9 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        $author->delete();
+        Author::destroy($author->id);
 
-        return redirect()->route('admin/author/index');
+        return redirect()->route('admin.author.index');
     }
 
 }
