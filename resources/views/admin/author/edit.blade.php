@@ -10,9 +10,13 @@
             <form action="{{ route('admin.author.update', $author) }}" method="POST">
                 @csrf
                 @method("PUT")
-                <div class="form-group">
+                <div class="form-group @error('name') has-error @enderror">
                     <label for="">Nama</label>
-                    <input type="text" name="name" class="form-control" placeholder="Masukkan nama penulis" value="{{ $author->name }}">
+                    {{-- old('name') ?? $author->name, jika ada old name maka akan redirect ke old name jika tidak maka kembali ke literasi --}}
+                    <input type="text" name="name" class="form-control" placeholder="Masukkan nama penulis" value="{{ old('name') ?? $author->name }}"> 
+                    @error('name')
+                        <span class="help-block">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
