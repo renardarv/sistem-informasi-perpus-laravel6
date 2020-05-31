@@ -10,7 +10,6 @@
 
     <div class="box-body">
        
-
         <table id="dataTable" class="table table-bordered table-hover">
             <thead>
                 <tr>
