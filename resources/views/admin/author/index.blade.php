@@ -9,10 +9,12 @@
     </div>
 
     <div class="box-body">
+       
+
         <table id="dataTable" class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Id</th>
                     <th>Nama</th>
                     <th>Aksi</th>
                 </tr>
@@ -30,6 +32,8 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('assets/plugins/bs-notify.min.js') }}"></script>
+    @include('admin.templates.partials.alerts')
     <script>
         $(function(){
             $('#dataTable').DataTable({
