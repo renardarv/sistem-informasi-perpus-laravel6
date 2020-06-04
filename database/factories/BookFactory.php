@@ -9,7 +9,7 @@ use Faker\Generator as Faker;
 $factory->define(Book::class, function (Faker $faker) {
 
     $randomNumber = rand(1,100);
-    $cover = "https://picsum.photos/id/{$randomNumber}/200/300";
+    $cover = "https://picsum.photos/seed/{$randomNumber}/200/300"; // seeb bisa digamti dengan id
 
     return [
         'author_id' => Author::inRandomOrder()->first()->id,

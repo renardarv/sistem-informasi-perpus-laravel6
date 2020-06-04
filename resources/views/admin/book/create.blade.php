@@ -20,7 +20,7 @@
 
                 <div class="form-group @error('title') 'has-error' @enderror">
                     <label for="">Deskripsi</label>
-                    <textarea name="description" id="" cols="30" rows="3" class="form-control" placeholder="Tuliskan deskripsi buku">{{ old('descripion') }}</textarea>
+                    <textarea name="description" id="" cols="30" rows="3" class="form-control" placeholder="Tuliskan deskripsi buku">{{ old('description') }}</textarea>
                     @error('title')
                         <span class="help-block">{{ old('title') }}</span>
                     @enderror

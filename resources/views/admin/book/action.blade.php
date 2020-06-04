@@ -1,5 +1,5 @@
-<a href="{{ route('admin.author.edit', $model) }}" class="btn btn-success">Edit</a> 
-<button href="{{ route('admin.author.destroy', $model) }}" class="btn btn-danger" id="delete">Hapus</button>
+<a href="{{ route('admin.book.edit', $model) }}" class="btn btn-success">Edit</a> 
+<button href="{{ route('admin.book.destroy', $model) }}" class="btn btn-danger" id="delete">Hapus</button>
 
 {{-- tidak ditao di index agar tertrigger --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
