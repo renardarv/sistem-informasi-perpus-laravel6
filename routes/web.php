@@ -19,9 +19,7 @@
 //     return view('admin.user.index');
 // });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Frontend\\BookController@index')->name('homepage');
 
 Auth::routes(['verify' => true]);
 
