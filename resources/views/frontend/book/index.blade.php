@@ -12,15 +12,17 @@
         <div class="col s12 m6">
             <div class="card horizontal hoverable" style="width: 100%; height: 35vh;">
                 <div class="card-image" >
-                    <img src="{{ $book->getCover() }}" height="200px" style="margin: 10px;">
+                    <img src="{{ $book->getCover() }}" height="255px" style="margin: 10px;">
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
-                        <h6><b>{{ Str::limit($book->title), 20 }}</b></h6>
+                        <h6>
+                            <a href="{{ route('book.show', $book) }}">{{ Str::limit($book->title), 20 }}</a>
+                        </h6>
                         <p>{{ Str::limit($book->description), 50 }}</p>
                     </div>
                     <div class="card-action">
-                        <a href="#">This is a link</a>
+                        <a href="#" class="btn red accent-1 right waves-effect waves-light">Pinjam Buku</a>
                     </div>
                 </div>
             </div>
