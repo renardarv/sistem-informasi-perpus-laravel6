@@ -21,6 +21,7 @@
 
 Route::get('/', 'Frontend\\BookController@index')->name('homepage');
 Route::get('/book/{book}', 'Frontend\\BookController@show')->name('book.show');
+Route::post('/book/{book}/borrow', 'Frontend\\BookController@borrow')->name('book.borrow')->middleware('auth'); // middleware auth >> yang dapat akses hanya yang sedang login
 
 Auth::routes(['verify' => true]);
 

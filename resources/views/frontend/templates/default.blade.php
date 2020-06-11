@@ -12,5 +12,6 @@
     </div>
 
     @include('frontend.templates.partials.scripts')
+    @include('frontend.templates.partials.toast')
 </body>
 </html>
