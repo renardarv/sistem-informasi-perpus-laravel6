@@ -1,81 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
- @include('frontend.templates.partials.head')
-<body>
+@extends('frontend.templates.default')
 
-{{-- navigation --}}
-<nav>
-    <div class="nav-wrapper">
-        <a href="{{ route('homepage') }}" class="brand-logo">Perpusku</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="{{ route('homepage') }}">Perpus</a></li>
-            <li>
-                <a href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-                </a>
+@section('content')
+    <div class="row">
+        <h4>Selamat datang {{ Auth::user()->name }},</h4>
+        <h3>Buku yang sedang dipinjam:</h3>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>    
-            </li>
-        </ul>
-    </div>
-</nav>
-
-<ul class="sidenav" id="mobile-demo">
-    <li><a href="{{ route('homepage') }}">Perpus</a></li>
-    <li>
-            <a href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-    </li>
-</ul>
-
-
-
-{{-- Content --}}
-<div class="container">
-
-<div class="container">
-    <h5>Welcome {{ Auth::user()->name }}</h5>
-    <h6>Let's go to read!</h6><br>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
+        @foreach ($books as $book)
+        <div class="card horizontal hoverable" style="width: 100%; height: 40vh;">
+            {{-- <div class="card-image" > --}}
+                <img src="{{ $book->getCover() }}">
+            {{-- </div> --}}
+            <div class="card-stacked">
+                <div class="card-content">
+    
+                    <h5 class="red-text accent-2">{{ $book->title }}</h5>
+                    <blockquote>
+                        <p class="text-justify">{{ $book->description }}</p>
+                    </blockquote>
+                    <p>
+                        <i class="material-icons" style = "position:relative; top:5px;">person</i> : {{ $book->author->name }}
+                    </p>      
+                    
                 </div>
-
-                <a href="{{ route('homepage') }}">>> <u>Go to book store</u></a>
             </div>
         </div>
+        @endforeach
+        
     </div>
-</div>
-
-</div>
-
-@include('frontend.templates.partials.scripts')
-</body>
-</html>
-
-
-    
-
-
+@endsection
 

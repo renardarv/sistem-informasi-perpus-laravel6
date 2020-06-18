@@ -1,63 +1,52 @@
-<nav>
-    <div class="nav-wrapper">
-        <a href="{{ route('homepage') }}" class="brand-logo">Perpusku</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+<nav class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="{{ route('homepage') }}" class="brand-logo">Perpusku</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+            @guest
+                <li><a href="{{ route('login') }}">Login</a></li>
+                <li><a href="{{ route('register') }}">Register</a></li>
+            @else
+                
+                <ul id="dropdown1" class="dropdown-content">
 
-        
-        <ul class="right hide-on-med-and-down">
-        @guest
-            <li><a href="{{ route('login') }}">Login</a></li>
-            @if (Route::has('register'))
-            <li><a href="{{ route('register') }}">Register</a></li>
-            @endif
-        @else
-            <li class="nav-item dropdown">
-                <a href="{{ route('login') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }} <span class="caret"></span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
+                    <li><a href="{{ route('homepage') }}">Home</a></li>
+                    <li><a href="{{ route('home') }}">Profile</a></li>
+                    <li><a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Logout</a></li>
+
+                </ul>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-            </li>
-        @endguest
-        </ul>
 
-    </div>
+                <li><a href="#" class="dropdown-trigger" data-target="dropdown1">{{ auth()->user()->name }}</a></li>
+            @endguest
+            </ul>
+        </div>
+    </nav>
 </nav>
-
 
 <ul class="sidenav" id="mobile-demo">
     @guest
-            <li><a href="{{ route('login') }}">Login</a></li>
-            @if (Route::has('register'))
-            <li><a href="{{ route('register') }}">Register</a></li>
-            @endif
-        @else
-            <li class="nav-item dropdown">
-                <a href="{{ route('login') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }} <span class="caret"></span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
+        <li><a href="{{ route('login') }}">Login</a></li>
+        <li><a href="{{ route('register') }}">Register</a></li>
+    @else
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </li>
-        @endguest
+    <li><a href="{{ route('homepage') }}">Home</a></li>
+    <li><a href="{{ route('home') }}">{{ Auth::user()->name }}</a></li>
+    <li><a href="{{ route('logout') }}"
+        onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">Logout</a></li>         
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+
+    @endguest
 </ul>
 
 

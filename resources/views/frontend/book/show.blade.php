@@ -3,7 +3,7 @@
 @section('content')
 <h4>Detail Buku</h4>
 <div class="col s12 m12">
-    <div class="card horizontal hoverable" style="width: 100%; height: 40vh;">
+    <div class="card horizontal hoverable" style="width: 100%; height: 45vh;">
         {{-- <div class="card-image" > --}}
             <img src="{{ $book->getCover() }}">
         {{-- </div> --}}
@@ -23,33 +23,21 @@
                 
             </div>
             <div class="card-action">
-                <a href="#" class="btn red accent-1 right waves-effect waves-light">Pinjam Buku</a>
+                <form action="{{ route('book.borrow', $book) }}" method="post">
+                    @csrf
+                    <button type="submit"class="btn red accent-1 right waves-effect waves-light">Pinjam Buku</button>
+                </form>
             </div>
         </div>
     </div>
 
-    <h5>Buku lainnya dari penulis {{ $book->author->name }}...</h5>
+    <h5>Buku lainnya dari penulis {{ $book->author->name }} ...</h5>
     <div class="row">
         {{-- shuffle() untuk random book dan take() untuk max capacity book --}}
         @foreach ($book->author->books->shuffle()->take(4) as $book)
-        <div class="col s12 m6">
-            <div class="card horizontal hoverable" style="width: 100%; height: 35vh;">
-                <div class="card-image" >
-                    <img src="{{ $book->getCover() }}" height="255px" style="margin: 10px;">
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <h6>
-                            <a href="{{ route('book.show', $book) }}">{{ Str::limit($book->title), 20 }}</a>
-                        </h6>
-                        <p>{{ Str::limit($book->description), 50 }}</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#" class="btn red accent-1 right waves-effect waves-light">Pinjam Buku</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+            @component('frontend.templates.components.card-book', ['book' => $book])
+                {{-- bisa menggunakan include --}}
+            @endcomponent
         @endforeach
     </div>
 @endsection
