@@ -15,6 +15,7 @@ class DataController extends Controller
         $authors = Author::orderby('name', 'ASC');
 
         // untuk menggunakan fungsi latest() harus memiliki data type cerate_at pada table
+
         return datatables()->of($authors)
             ->addColumn('action', 'admin.author.action')
             ->addIndexColumn()
@@ -24,9 +25,14 @@ class DataController extends Controller
 
     public function books()
     {
-        $books = Book::orderby('title', 'ASC');
+        $books = Book::orderby('title', 'ASC')->get(); 
+        
+        // menambahkan with('author )->orderby() untuk mengurangi query buku pada template admin , bisa sebagai penggati ->get() diatas dan load d bawah
+
+        $books->load('author');
 
         // untuk menggunakan fungsi latest() harus memiliki data type cerate_at pada table
+
         return datatables()->of($books)
             ->addColumn('author', function(Book $model){
                 return $model->author->name;
@@ -42,10 +48,14 @@ class DataController extends Controller
 
     public function borrows()
     {
-        $borrows = BorrowHistory::isBorrowed()->latest();
+        $borrows = BorrowHistory::isBorrowed()->latest()->get();
+
+        $borrows->load('user', 'book'); // mempunyai relasi lebih dari 1
 
         return datatables()->of($borrows)
+
             // untuk memanggil user pada data view index borrow
+
             ->addColumn('user', function(BorrowHistory $model){
                 return $model->user->name;
             })

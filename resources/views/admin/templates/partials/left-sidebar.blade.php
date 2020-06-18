@@ -13,13 +13,12 @@
  
         <li><a href="{{ route('admin.author.index') }}"><i class="fa fa-user"></i> <span>Penulis</span></a></li>
         <li><a href="{{ route('admin.book.index') }}"><i class="fa fa-book"></i> <span>Buku</span></a></li>
-        <li><a href="{{ route('admin.borrow.index') }}"><i class="fa fa-book"></i> <span>Buku sedang dipinjam</span></a></li>
         <li><a href="#"><i class="fa fa-users"></i> <span>User</span></a></li>
+        <li><a href="{{ route('admin.borrow.index') }}"><i class="fa fa-bookmark"></i> <span>Daftar Pinjaman</span></a></li>
 
-        <li class="header">LABELS</li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+        <li class="header">EXTRA</li>
+        <li><a href="{{ route('admin.report.top-book') }}"><i class="fa fa-circle-o text-warning"></i> <span>Buku Favorit</span></a></li>
+        <li><a href="{{ route('admin.report.top-user') }}"><i class="fa fa-circle-o text-aqua"></i> <span>Top User</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

@@ -14,6 +14,7 @@ class BookController extends Controller
         $books = Book::paginate(10);
 
         return view('frontend.book.index', [
+            'title' => 'Beranda Perpusku',
             'books' => $books,
         ]);
     }
@@ -21,6 +22,7 @@ class BookController extends Controller
     public function show(Book $book)
     {
         return view('frontend.book.show', [
+            'title' => $book->title,
             'book' => $book
         ]);
     }
@@ -34,9 +36,10 @@ class BookController extends Controller
         
         $user = auth()->user();
 
-        if ($user->borrow()->where('books.id', $book->id)->count() > 0) {
+        if ( $user->borrow()->isStillBorrow($book->id) ) 
+            {
             return redirect()->back()->with('toast', 'Kamu sudah meminjam buku dengan judul ' . $book->title);
-        }
+            }
 
         $user->borrow()->attach($book);
         $book->decrement('qty');
