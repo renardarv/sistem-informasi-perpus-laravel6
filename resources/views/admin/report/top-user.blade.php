@@ -22,10 +22,21 @@
             </thead>
 
             <tbody>
-                @foreach ($users as $index => $user)
+                @php
+                    $page = 1;
+
+                    if(request()->has('page'))
+                    {
+                        $page = request('page');
+                    }
+
+                    $no = (env('PAGINATION_ADMIN') * $page) - (env('PAGINATION_ADMIN') - 1);
+                @endphp
+                @foreach ($users as $user)
                 <tr>
                     
-                    <td>{{ $index +1 }}</td>
+                    {{-- <td>{{ $index +1 }}</td> >> bila ganti page angka akan reset dr 1--}}
+                    <td>{{ $no++ }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->borrow_count }}</td>

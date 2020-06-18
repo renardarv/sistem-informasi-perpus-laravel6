@@ -24,10 +24,22 @@
             </thead>
 
             <tbody>
+                @php
+                    $page = 1;
+
+                    if(request()->has('page'))
+                    {
+                        $page = request('page');
+                    }
+
+                    // $no = (10 * $page) - (10 - 1); >> logika matematikanya jika perpage 10 data
+
+                    $no = (env('PAGINATION_ADMIN') * $page) - (env('PAGINATION_ADMIN') - 1);
+                @endphp
                 @foreach ($books as $index => $book)
                 <tr>
                     
-                    <td>{{ $index +1 }}</td>
+                    <td>{{ $no++ }}</td>
                     <td>{{ $book->title }}</td>
                     <td>{{ $book->description }}</td>
                     <td>{{ $book->qty }}</td>
